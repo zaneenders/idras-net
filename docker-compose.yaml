@@ -1,0 +1,37 @@
+services:
+  zookeeper:
+    image: ubuntu/zookeeper
+    container_name: zookeeper
+    networks:
+      - kafka_network
+
+  kafka:
+    image: ubuntu/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    depends_on:
+      - zookeeper
+    environment:
+      ZOOKEEPER_HOST: zookeeper
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CFG_ZOOKEEPER_CONNECT: zookeeper:2181
+    networks:
+      - kafka_network
+
+  swift-producer:
+    depends_on:
+      - kafka
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      KAFKA_HOST: kafka
+    networks:
+      - kafka_network
+
+networks:
+  kafka_network:
+    driver: bridge

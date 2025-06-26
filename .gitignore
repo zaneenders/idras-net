@@ -1,0 +1,13 @@
+# Build artifacts
+/.build/
+/.index-build/
+# Annoying Mac file
+.DS_Store
+# Swift files
+/.swiftpm/
+Package.resolved
+.swift-version
+
+# Editor files
+/.vscode/
+
