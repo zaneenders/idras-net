@@ -4,4 +4,6 @@ Zane's Distrusted Systems playground.
 
 ## ⚠️Work in progress
 
-- [ ] Get docker-compose environment setup
+- [x] Get docker-compose environment setup
+- [x] Producer
+- [ ] Consumer
