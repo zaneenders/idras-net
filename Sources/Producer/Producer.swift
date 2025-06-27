@@ -37,12 +37,18 @@ struct Producer {
 
         // Task sending message and receiving events
         group.addTask {
-          let messageID = try producer.send(
-            KafkaProducerMessage(
-              topic: "topic-name",
-              value: "Hello, World!"
+          var count = 0
+          while !Task.isCancelled {
+            // What do I do with message ID?
+            _ = try producer.send(
+              KafkaProducerMessage(
+                topic: "topic-name",
+                value: "Hello, World! \(count)"
+              )
             )
-          )
+            count += 1
+            try? await Task.sleep(for: .milliseconds(1))
+          }
 
           for await event in events {
             switch event {

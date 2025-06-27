@@ -19,6 +19,13 @@ let package = Package(
       dependencies: [
         .product(name: "Kafka", package: "swift-kafka-client"),
         .product(name: "ServiceLifecycle", package: "swift-service-lifecycle"),
-      ])
+      ]
+    ),
+    .executableTarget(
+      name: "Consumer",
+      dependencies: [
+        .product(name: "Kafka", package: "swift-kafka-client"),
+        .product(name: "ServiceLifecycle", package: "swift-service-lifecycle"),
+      ]),
   ]
 )

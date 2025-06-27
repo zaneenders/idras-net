@@ -6,4 +6,4 @@ Zane's Distrusted Systems playground.
 
 - [x] Get docker-compose environment setup
 - [x] Producer
-- [ ] Consumer
+- [x] Consumer
